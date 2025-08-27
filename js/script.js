@@ -76,3 +76,34 @@ document.addEventListener('DOMContentLoaded', function() {
         this.reset();
     });
 });
+// Dans js/script.js
+function checkAuth(driveLink, pdfId) {
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
+    
+    if (!isLoggedIn) {
+        window.location.href = 'connexion.html';
+    } else {
+        // Afficher une pub avant la redirection
+        showAd().then(() => {
+            incrementViewCounter(pdfId);
+            window.open(driveLink, '_blank');
+        });
+    }
+}
+
+function showAd() {
+    return new Promise((resolve) => {
+        // Simuler une publicité
+        if (Math.random() > 0.7) { // 30% de chance d'afficher une pub
+            const ad = confirm('📢 Supportez-nous en regardant une publicité rapide!\n\nCliquez sur OK pour continuer.');
+            if (ad) {
+                // Ici intégrer un vrai réseau publicitaire
+                setTimeout(resolve, 2000);
+            } else {
+                resolve();
+            }
+        } else {
+            resolve();
+        }
+    });
+}
