@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BliblioPDF - Votre bibliothèque de PDF en ligne</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Styles pour le logo image */
+        .logo-img {
+            height: 50px;
+            width: 50px;
+            border-radius: 10px;
+            margin-right: 15px;
+            object-fit: cover;
+        }
+
+        /* Styles pour les couvertures de PDF */
+        .pdf-cover-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .pdf-cover-placeholder {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="container header-content">
+            <div class="logo-container">
+                <!-- Remplacez logo.jpg par le chemin de votre logo -->
+                <img src="images/logo.jpg" alt="Logo BliblioPDF" class="logo-img">
+                <h1 class="site-title">BliblioPDF</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
+                    <li><a href="profil.html"><i class="fas fa-user"></i> Profil</a></li>
+                    <li><a href="savoir.html"><i class="fas fa-info-circle"></i> En savoir plus</a></li>
+                    <li><a href="connexion.html"><i class="fas fa-sign-in-alt"></i> Connexion</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- BARRE DE RECHERCHE -->
+    <div class="container">
+        <div class="search-container">
+            <input type="text" class="search-bar" placeholder="Rechercher un PDF...">
+            <button class="search-btn"><i class="fas fa-search"></i></button>
+        </div>
+    </div>
+
+    <!-- FILTRES -->
+    <div class="container">
+        <div class="filters">
+            <button class="filter-btn active">Tous</button>
+            <button class="filter-btn">Informatique</button>
+            <button class="filter-btn">Mathématiques</button>
+            <button class="filter-btn">Physique</button>
+            <button class="filter-btn">Chimie</button>
+            <button class="filter-btn">Économie</button>
+            <button class="filter-btn">Droit</button>
+            <button class="filter-btn">Médecine</button>
+        </div>
+    </div>
+
+    <!-- CONTENU PRINCIPAL -->
+    <main class="container main-content">
+        <h2 class="section-title">PDFs Populaires</h2>
+        
+        <div class="pdf-grid">
+            <!-- PDF 1 -->
+            <div class="pdf-card">
+                <!-- Remplacez cover1.jpg par le chemin de votre image -->
+                <img src="images/covers/cover1.jpg" alt="Introduction à la Programmation" class="pdf-cover-img">
+                <div class="pdf-info">
+                    <h3 class="pdf-title">Introduction à la Programmation</h3>
+                    <div class="pdf-meta">
+                        <span>Informatique</span>
+                        <span>2.5 MB</span>
+                    </div>
+                    <div class="pdf-views">
+                        <i class="fas fa-eye"></i> <span id="view-count-pdf1">0</span> vues
+                    </div>
+                    <div class="pdf-actions">
+                        <button class="btn btn-download" onclick="window.location.href='help.html'">
+                            <i class="fas fa-download"></i> Télécharger
+                        </button>
+                        <button class="btn btn-view" onclick="checkAuth('https://drive.google.com', 'pdf1')">
+                            <i class="fas fa-eye"></i> Voir
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- PDF 2 -->
+            <div class="pdf-card">
+                <!-- Remplacez cover2.jpg par le chemin de votre image -->
+                <img src="images/covers/cover2.jpg" alt="Mathématiques Avancées" class="pdf-cover-img">
+                <div class="pdf-info">
+                    <h3 class="pdf-title">Mathématiques Avancées</h3>
+                    <div class="pdf-meta">
+                        <span>Mathématiques</span>
+                        <span>3.1 MB</span>
+                    </div>
+                    <div class="pdf-views">
+                        <i class="fas fa-eye"></i> <span id="view-count-pdf2">0</span> vues
+                    </div>
+                    <div class="pdf-actions">
+                        <button class="btn btn-download" onclick="window.location.href='help.html'">
+                            <i class="fas fa-download"></i> Télécharger
+                        </button>
+                        <button class="btn btn-view" onclick="checkAuth('https://drive.google.com', 'pdf2')">
+                            <i class="fas fa-eye"></i> Voir
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- PDF 3 -->
+            <div class="pdf-card">
+                <!-- Remplacez cover3.jpg par le chemin de votre image -->
+                <img src="images/covers/cover3.jpg" alt="Principes de l'Économie" class="pdf-cover-img">
+                <div class="pdf-info">
+                    <h3 class="pdf-title">Principes de l'Économie</h3>
+                    <div class="pdf-meta">
+                        <span>Économie</span>
+                        <span>4.2 MB</span>
+                    </div>
+                    <div class="pdf-views">
+                        <i class="fas fa-eye"></i> <span id="view-count-pdf3">0</span> vues
+                    </div>
+                    <div class="pdf-actions">
+                        <button class="btn btn-download" onclick="window.location.href='help.html'">
+                            <i class="fas fa-download"></i> Télécharger
+                        </button>
+                        <button class="btn btn-view" onclick="checkAuth('https://drive.google.com', 'pdf3')">
+                            <i class="fas fa-eye"></i> Voir
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- COMPTEUR DE VUES GLOBAL -->
+        <div class="counter-section">
+            <h3 class="counter-title">Nombre total de consultations</h3>
+            <div class="counter-number">0</div>
+        </div>
+
+        <!-- SECTION DEMANDE DE PDF -->
+        <div class="request-section">
+            <h3 class="request-title">Demander un PDF</h3>
+            <form class="request-form">
+                <div class="form-group">
+                    <label for="title">Titre du PDF</label>
+                    <input type="text" id="title" placeholder="Titre du document">
+                </div>
+                <div class="form-group">
+                    <label for="author">Auteur</label>
+                    <input type="text" id="author" placeholder="Nom de l'auteur">
+                </div>
+                <div class="form-group full-width">
+                    <label for="description">Description</label>
+                    <textarea id="description" placeholder="Décrivez le document que vous recherchez..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="category">Catégorie</label>
+                    <select id="category">
+                        <option value="">Sélectionnez une catégorie</option>
+                        <option value="informatique">Informatique</option>
+                        <option value="mathematiques">Mathématiques</option>
+                        <option value="physique">Physique</option>
+                        <option value="droit">Droit</option>
+                        <option value="economie">Économie</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="email">Votre email</label>
+                    <input type="email" id="email" placeholder="votre@email.com">
+                </div>
+                <button type="submit" class="submit-btn">Envoyer la demande</button>
+            </form>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p><i class="fas fa-envelope"></i> contact@blibliopdf.com</p>
+                    <p><i class="fas fa-phone"></i> +221 77 123 45 67</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Dakar, Sénégal</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Liens Rapides</h3>
+                    <a href="index.html"><i class="fas fa-home"></i> Accueil</a>
+                    <a href="profil.html"><i class="fas fa-user"></i> Profil</a>
+                    <a href="savoir.html"><i class="fas fa-info-circle"></i> À propos</a>
+                    <a href="politique.html"><i class="fas fa-shield-alt"></i> Politique de confidentialité</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Réseaux Sociaux</h3>
+                    <p>Suivez-nous sur les réseaux sociaux</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 BliblioPDF. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

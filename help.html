@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aide - BliblioPDF</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .help-content {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .help-title {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #2c3e50;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 10px;
+            background: #f1f1f1;
+            margin-bottom: 30px;
+        }
+
+        .video-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: #7f8c8d;
+        }
+
+        .steps {
+            margin-left: 20px;
+            margin-bottom: 30px;
+        }
+
+        .steps li {
+            margin-bottom: 10px;
+        }
+
+        .note {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #86a8e7;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo-container">
+                <div class="logo">BP</div>
+                <h1 class="site-title">BliblioPDF</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
+                    <li><a href="profil.html"><i class="fas fa-user"></i> Profil</a></li>
+                    <li><a href="savoir.html"><i class="fas fa-info-circle"></i> En savoir plus</a></li>
+                    <li><a href="connexion.html"><i class="fas fa-sign-in-alt"></i> Connexion</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="help-content">
+            <h2 class="help-title">Comment télécharger un PDF</h2>
+            
+            <div class="video-container">
+                <div class="video-placeholder">
+                    <i class="fas fa-video" style="font-size: 50px; margin-bottom: 15px;"></i>
+                    <p>Tutoriel vidéo</p>
+                </div>
+            </div>
+            
+            <h3 style="color: #2c3e50; margin-bottom: 15px;">Étapes pour télécharger un PDF :</h3>
+            <ol class="steps">
+                <li>Recherchez le PDF que vous souhaitez télécharger</li>
+                <li>Cliquez sur le bouton "Voir" pour visualiser le PDF</li>
+                <li>Dans la visionneuse PDF, cliquez sur l'icône de téléchargement</li>
+                <li>Choisissez l'emplacement où enregistrer le fichier</li>
+                <li>Attendez que le téléchargement se termine</li>
+            </ol>
+            
+            <div class="note">
+                <p><strong>Note :</strong> Vous devez être connecté pour pouvoir télécharger les PDF. Si vous n'avez pas de compte, vous pouvez en créer un gratuitement.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p><i class="fas fa-envelope"></i> contact@blibliopdf.com</p>
+                    <p><i class="fas fa-phone"></i> +221 77 123 45 67</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Dakar, Sénégal</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Liens Rapides</h3>
+                    <a href="index.html"><i class="fas fa-home"></i> Accueil</a>
+                    <a href="profil.html"><i class="fas fa-user"></i> Profil</a>
+                    <a href="savoir.html"><i class="fas fa-info-circle"></i> À propos</a>
+                    <a href="politique.html"><i class="fas fa-shield-alt"></i> Politique de confidentialité</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Réseaux Sociaux</h3>
+                    <p>Suivez-nous sur les réseaux sociaux</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 BliblioPDF. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

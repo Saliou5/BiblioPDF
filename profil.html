@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil - BliblioPDF</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .profile-content {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .profile-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 40px;
+            margin-right: 20px;
+        }
+
+        .profile-info h2 {
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .profile-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 24px;
+            font-weight: 700;
+            color: #86a8e7;
+        }
+
+        .stat-label {
+            color: #7f8c8d;
+        }
+
+        .profile-actions {
+            margin-top: 30px;
+        }
+
+        .action-btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: linear-gradient(90deg, #86a8e7, #91eae4);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-right: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo-container">
+                <div class="logo">BP</div>
+                <h1 class="site-title">BliblioPDF</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
+                    <li><a href="profil.html"><i class="fas fa-user"></i> Profil</a></li>
+                    <li><a href="savoir.html"><i class="fas fa-info-circle"></i> En savoir plus</a></li>
+                    <li><a href="connexion.html"><i class="fas fa-sign-in-alt"></i> Connexion</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="profile-content">
+            <div class="profile-header">
+                <div class="profile-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="profile-info">
+                    <h2 id="profile-name">Utilisateur</h2>
+                    <p id="profile-email">utilisateur@example.com</p>
+                </div>
+            </div>
+
+            <div class="profile-stats">
+                <div class="stat-card">
+                    <div class="stat-number" id="pdf-viewed">0</div>
+                    <div class="stat-label">PDFs consultés</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="pdf-downloaded">0</div>
+                    <div class="stat-label">PDFs téléchargés</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="days-member">0</div>
+                    <div class="stat-label">Jours membre</div>
+                </div>
+            </div>
+
+            <h3 style="color: #2c3e50; margin-bottom: 20px;">Mes PDFs récents</h3>
+            <div id="recent-pdfs">
+                <p style="color: #7f8c8d; text-align: center;">Aucun PDF consulté récemment</p>
+            </div>
+
+            <div class="profile-actions">
+                <button class="action-btn" onclick="editProfile()">
+                    <i class="fas fa-edit"></i> Modifier le profil
+                </button>
+                <button class="action-btn" onclick="changePassword()">
+                    <i class="fas fa-key"></i> Changer le mot de passe
+                </button>
+                <button class="action-btn" style="background: linear-gradient(90deg, #ff7e5f, #feb47b);" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> Déconnexion
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p><i class="fas fa-envelope"></i> contact@blibliopdf.com</p>
+                    <p><i class="fas fa-phone"></i> +221 77 123 45 67</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Dakar, Sénégal</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Liens Rapides</h3>
+                    <a href="index.html"><i class="fas fa-home"></i> Accueil</a>
+                    <a href="profil.html"><i class="fas fa-user"></i> Profil</a>
+                    <a href="savoir.html"><i class="fas fa-info-circle"></i> À propos</a>
+                    <a href="politique.html"><i class="fas fa-shield-alt"></i> Politique de confidentialité</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Réseaux Sociaux</h3>
+                    <p>Suivez-nous sur les réseaux sociaux</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 BliblioPDF. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Charger les informations du profil
+            loadProfileData();
+            
+            // Charger les statistiques
+            loadStatistics();
+        });
+
+        function loadProfileData() {
+            const userName = localStorage.getItem('userName') || 'Utilisateur';
+            const userEmail = localStorage.getItem('userEmail') || 'utilisateur@example.com';
+            
+            document.getElementById('profile-name').textContent = userName;
+            document.getElementById('profile-email').textContent = userEmail;
+        }
+
+        function loadStatistics() {
+            // Charger les statistiques depuis le localStorage
+            const pdfViews = JSON.parse(localStorage.getItem('pdfViews')) || {};
+            let totalViews = 0;
+            
+            for (const pdfId in pdfViews) {
+                totalViews += pdfViews[pdfId];
+            }
+            
+            document.getElementById('pdf-viewed').textContent = totalViews;
+            
+            // Simuler d'autres statistiques
+            document.getElementById('pdf-downloaded').textContent = Math.floor(totalViews * 0.7);
+            document.getElementById('days-member').textContent = Math.floor(Math.random() * 100) + 1;
+        }
+
+        function editProfile() {
+            alert('Fonctionnalité de modification de profil à venir!');
+        }
+
+        function changePassword() {
+            alert('Fonctionnalité de changement de mot de passe à venir!');
+        }
+
+        function logout() {
+            localStorage.removeItem('isLoggedIn');
+            localStorage.removeItem('userEmail');
+            localStorage.removeItem('userName');
+            alert('Déconnexion réussie!');
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>

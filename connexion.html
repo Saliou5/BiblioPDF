@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion - BliblioPDF</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Styles spécifiques à la connexion */
+        .auth-container {
+            max-width: 500px;
+            margin: 40px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .auth-tabs {
+            display: flex;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #eee;
+        }
+
+        .auth-tab {
+            flex: 1;
+            text-align: center;
+            padding: 15px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #7f8c8d;
+            transition: all 0.3s ease;
+        }
+
+        .auth-tab.active {
+            color: #86a8e7;
+            border-bottom: 3px solid #86a8e7;
+        }
+
+        .auth-form {
+            display: none;
+        }
+
+        .auth-form.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #2c3e50;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e6e6e6;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            border-color: #86a8e7;
+            outline: none;
+        }
+
+        .auth-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(90deg, #ff7e5f, #feb47b);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .auth-btn:hover {
+            background: linear-gradient(90deg, #feb47b, #ff7e5f);
+            transform: translateY(-2px);
+        }
+
+        .social-auth {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .social-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 10px;
+            border: 2px solid #e6e6e6;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .social-btn.google {
+            background-color: white;
+            color: #DB4437;
+        }
+
+        .social-btn.facebook {
+            background-color: white;
+            color: #4267B2;
+        }
+
+        .social-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        }
+
+        .auth-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .auth-link a {
+            color: #86a8e7;
+            text-decoration: none;
+        }
+
+        .auth-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo-container">
+                <div class="logo">BP</div>
+                <h1 class="site-title">BliblioPDF</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
+                    <li><a href="profil.html"><i class="fas fa-user"></i> Profil</a></li>
+                    <li><a href="savoir.html"><i class="fas fa-info-circle"></i> En savoir plus</a></li>
+                    <li><a href="connexion.html"><i class="fas fa-sign-in-alt"></i> Connexion</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="auth-container">
+            <div class="auth-tabs">
+                <div class="auth-tab active" onclick="showForm('login')">Connexion</div>
+                <div class="auth-tab" onclick="showForm('register')">Inscription</div>
+            </div>
+
+            <form id="login-form" class="auth-form active">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required placeholder="votre@email.com">
+                </div>
+                <div class="form-group">
+                    <label for="password">Mot de passe</label>
+                    <input type="password" id="password" required placeholder="Votre mot de passe">
+                </div>
+                <button type="button" class="auth-btn" onclick="login()">Se connecter</button>
+                <div class="auth-link">
+                    <a href="#">Mot de passe oublié?</a>
+                </div>
+            </form>
+
+            <form id="register-form" class="auth-form">
+                <div class="form-group">
+                    <label for="name">Nom complet</label>
+                    <input type="text" id="name" required placeholder="Votre nom complet">
+                </div>
+                <div class="form-group">
+                    <label for="register-email">Email</label>
+                    <input type="email" id="register-email" required placeholder="votre@email.com">
+                </div>
+                <div class="form-group">
+                    <label for="register-password">Mot de passe</label>
+                    <input type="password" id="register-password" required placeholder="Créez un mot de passe">
+                </div>
+                <div class="form-group">
+                    <label for="confirm-password">Confirmer le mot de passe</label>
+                    <input type="password" id="confirm-password" required placeholder="Confirmez votre mot de passe">
+                </div>
+                <button type="button" class="auth-btn" onclick="register()">S'inscrire</button>
+            </form>
+
+            <div class="social-auth">
+                <button class="social-btn google" onclick="loginWithGoogle()">
+                    <i class="fab fa-google"></i> Se connecter avec Google
+                </button>
+                <button class="social-btn facebook" onclick="loginWithFacebook()">
+                    <i class="fab fa-facebook-f"></i> Se connecter avec Facebook
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p><i class="fas fa-envelope"></i> contact@blibliopdf.com</p>
+                    <p><i class="fas fa-phone"></i> +221 77 123 45 67</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Dakar, Sénégal</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Liens Rapides</h3>
+                    <a href="index.html"><i class="fas fa-home"></i> Accueil</a>
+                    <a href="profil.html"><i class="fas fa-user"></i> Profil</a>
+                    <a href="savoir.html"><i class="fas fa-info-circle"></i> À propos</a>
+                    <a href="politique.html"><i class="fas fa-shield-alt"></i> Politique de confidentialité</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Réseaux Sociaux</h3>
+                    <p>Suivez-nous sur les réseaux sociaux</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 BliblioPDF. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function showForm(formType) {
+            document.querySelectorAll('.auth-tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.auth-form').forEach(form => form.classList.remove('active'));
+            
+            if (formType === 'login') {
+                document.querySelector('.auth-tab:first-child').classList.add('active');
+                document.getElementById('login-form').classList.add('active');
+            } else {
+                document.querySelector('.auth-tab:last-child').classList.add('active');
+                document.getElementById('register-form').classList.add('active');
+            }
+        }
+
+        function login() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            if (email && password) {
+                localStorage.setItem('isLoggedIn', 'true');
+                localStorage.setItem('userEmail', email);
+                alert('Connexion réussie!');
+                window.location.href = 'index.html';
+            } else {
+                alert('Veuillez remplir tous les champs.');
+            }
+        }
+
+        function register() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('register-email').value;
+            const password = document.getElementById('register-password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            
+            if (password !== confirmPassword) {
+                alert('Les mots de passe ne correspondent pas.');
+                return;
+            }
+            
+            if (name && email && password) {
+                localStorage.setItem('isLoggedIn', 'true');
+                localStorage.setItem('userEmail', email);
+                localStorage.setItem('userName', name);
+                alert('Inscription réussie! Vous êtes maintenant connecté.');
+                window.location.href = 'index.html';
+            } else {
+                alert('Veuillez remplir tous les champs.');
+            }
+        }
+
+        function loginWithGoogle() {
+            localStorage.setItem('isLoggedIn', 'true');
+            localStorage.setItem('authMethod', 'google');
+            alert('Connexion avec Google réussie! (simulation)');
+            window.location.href = 'index.html';
+        }
+
+        function loginWithFacebook() {
+            localStorage.setItem('isLoggedIn', 'true');
+            localStorage.setItem('authMethod', 'facebook');
+            alert('Connexion avec Facebook réussie! (simulation)');
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>
