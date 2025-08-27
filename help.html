@@ -139,4 +139,23 @@
         </div>
     </footer>
 </body>
+<!-- Dans help.html -->
+<div class="video-monetization">
+    <div class="ad-placeholder">
+        <p>📺 Publicité - Supportez notre contenu</p>
+        <button onclick="skipAd()">Skip ad in 5s</button>
+    </div>
+    <div class="video-content" style="display:none;">
+        <!-- Votre vidéo ici -->
+    </div>
+</div>
+
+<script>
+function skipAd() {
+    document.querySelector('.ad-placeholder').style.display = 'none';
+    document.querySelector('.video-content').style.display = 'block';
+}
+// Afficher automatiquement après 5 secondes
+setTimeout(skipAd, 5000);
+</script>
 </html>
