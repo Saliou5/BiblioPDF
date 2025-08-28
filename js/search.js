@@ -101,3 +101,81 @@ document.addEventListener('DOMContentLoaded', function() {
         // Ici, vous implémenteriez le filtrage réel des documents affichés
     }
 });
+// === INTÉGRATION GOOGLE DRIVE === //
+const DRIVE_API_KEY = '';
+const DRIVE_FOLDER_ID = ';
+
+async function searchDriveFiles(query) {
+    try {
+        const response = await fetch(
+            `https://www.googleapis.com/drive/v3/files?q=name contains '${query}' and '${DRIVE_FOLDER_ID}' in parents&key=${DRIVE_API_KEY}`
+        );
+        const data = await response.json();
+        return data.files || [];
+    } catch (error) {
+        console.error('Erreur recherche Drive:', error);
+        return [];
+    }
+}
+
+async function getDriveFileInfo(fileId) {
+    try {
+        const response = await fetch(
+            `https://www.googleapis.com/drive/v3/files/${fileId}?fields=name,size,webViewLink&key=${DRIVE_API_KEY}`
+        );
+        return await response.json();
+    } catch (error) {
+        console.error('Erreur info fichier Drive:', error);
+        return null;
+    }
+}
+
+// Fonction pour combiner les résultats Vercel Blob + Google Drive
+async function searchAllFiles(query) {
+    try {
+        const [blobResults, driveResults] = await Promise.all([
+            blobManager.searchFiles(query),
+            searchDriveFiles(query)
+        ]);
+
+        // Formater les résultats Drive
+        const formattedDriveResults = await Promise.all(
+            driveResults.map(async (file) => {
+                const info = await getDriveFileInfo(file.id);
+                return {
+                    name: file.name,
+                    url: info?.webViewLink || `https://drive.google.com/file/d/${file.id}/view`,
+                    size: info?.size ? formatFileSize(info.size) : 'Inconnu',
+                    type: getFileType(file.name),
+                    source: 'google_drive'
+                };
+            })
+        );
+
+        // Combiner les résultats
+        return [
+            ...blobResults.map(item => ({ ...item, source: 'vercel_blob' })),
+            ...formattedDriveResults
+        ];
+    } catch (error) {
+        console.error('Erreur recherche combinée:', error);
+        return [];
+    }
+}
+
+// Fonction utilitaire pour la taille des fichiers
+function formatFileSize(bytes) {
+    if (!bytes) return 'Inconnu';
+    const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(1024));
+    return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + sizes[i];
+}
+
+function getFileType(filename) {
+    const extension = filename.split('.').pop().toLowerCase();
+    const types = {
+        'pdf': 'PDF Document', 'jpg': 'Image', 'jpeg': 'Image', 
+        'png': 'Image', 'doc': 'Word', 'docx': 'Word', 'txt': 'Text'
+    };
+    return types[extension] || 'File';
+}
