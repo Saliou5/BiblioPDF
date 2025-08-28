@@ -104,6 +104,66 @@ function showAd() {
             }
         } else {
             resolve();
+            
         }
     });
 }
+// === FONCTIONS VERCEL BLOB === //
+const BLOB_API_BASE ='1_SONTRbkHQIMVLEEuMFOV6hkAq7wpOCw'
+
+class BlobManager {
+    constructor() {
+        this.currentFiles = [];
+    }
+
+    async uploadFile(file) {
+        try {
+            const formData = new FormData();
+            formData.append('file', file);
+
+            const response = await fetch(`${BLOB_API_BASE}/upload`, {
+                method: 'POST',
+                body: formData
+            });
+
+            if (!response.ok) throw new Error(`Erreur HTTP: ${response.status}`);
+            return await response.json();
+        } catch (error) {
+            console.error('Erreur upload:', error);
+            throw error;
+        }
+    }
+
+    async searchFiles(query = '') {
+        try {
+            const response = await fetch(`${BLOB_API_BASE}/search?q=${encodeURIComponent(query)}`);
+            if (!response.ok) throw new Error(`Erreur HTTP: ${response.status}`);
+            
+            const result = await response.json();
+            this.currentFiles = result.files || [];
+            return this.currentFiles;
+        } catch (error) {
+            console.error('Erreur recherche:', error);
+            throw error;
+        }
+    }
+
+    async deleteFile(fileUrl) {
+        try {
+            const response = await fetch(`${BLOB_API_BASE}/delete?url=${encodeURIComponent(fileUrl)}`, {
+                method: 'DELETE'
+            });
+            if (!response.ok) throw new Error(`Erreur HTTP: ${response.status}`);
+            return await response.json();
+        } catch (error) {
+            console.error('Erreur suppression:', error);
+            throw error;
+        }
+    }
+}
+
+// Initialisation globale
+window.blobManager = new BlobManager();
+
+// === FONCTIONNALITÉS EXISTANTES === //
+// [Vos fonctions existantes restent ici...]
