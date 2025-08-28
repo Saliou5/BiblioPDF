@@ -102,8 +102,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 // === INTÉGRATION GOOGLE DRIVE === //
-const DRIVE_API_KEY = '';
-const DRIVE_FOLDER_ID = ';
+const DRIVE_API_KEY = 'AIzaSyDnVCYTw-QksbQZBxgBHOZFqtbIAu-Ih8A';
+const DRIVE_FOLDER_ID = '1_sONTRbKHQIMVLEEuMFOV6hkAq7wpOCw';
 
 async function searchDriveFiles(query) {
     try {
