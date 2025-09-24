@@ -36,6 +36,39 @@
         }
     </style>
 </head>
+    <!-- Barre de recherche fixe -->
+<header style="position: fixed; top: 0; width: 100%; background: white; z-index: 1000; padding: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+    <div style="max-width: 1200px; margin: 0 auto; display: flex; gap: 10px; align-items: center;">
+        <h1 style="margin: 0; font-size: 1.5em;">📚 BiblioPDF</h1>
+        <input type="text" id="global-search" placeholder="🔍 Rechercher un PDF..." style="flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+        <button onclick="globalSearch()" style="padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 5px;">Rechercher</button>
+        
+        <!-- Menu utilisateur -->
+        <div id="user-menu" style="margin-left: auto;">
+            <span id="user-name" style="margin-right: 15px;"></span>
+            <button onclick="logout()" style="padding: 8px 15px; background: #dc3545; color: white; border: none; border-radius: 5px;">Déconnexion</button>
+        </div>
+    </div>
+</header>
+
+<!-- Espace pour la barre fixe -->
+<div style="height: 80px;"></div>
+
+<!-- Section PDFs suggestions -->
+<section id="suggestions" style="padding: 20px; max-width: 1200px; margin: 0 auto;">
+    <h2>📖 PDFs Populaires</h2>
+    <div id="featured-pdfs" class="pdf-grid">
+        <!-- Les PDFs suggestions apparaîtront ici -->
+    </div>
+</section>
+
+<!-- Section PDFs personnels -->
+<section id="personal-pdfs" style="padding: 20px; max-width: 1200px; margin: 0 auto; display: none;">
+    <h2>📚 Mes PDFs</h2>
+    <div id="user-pdfs" class="pdf-grid">
+        <!-- Les PDFs de l'utilisateur apparaîtront ici -->
+    </div>
+</section>
 <body>
     <!-- HEADER -->
     <header>
