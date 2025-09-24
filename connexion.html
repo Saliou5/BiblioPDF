@@ -307,6 +307,27 @@
             alert('Connexion avec Facebook réussie! (simulation)');
             window.location.href = 'index.html';
         }
+        // Gestion du formulaire de connexion
+document.addEventListener('DOMContentLoaded', function() {
+    const loginForm = document.getElementById('login-form')
+    
+    if (loginForm) {
+        loginForm.addEventListener('submit', async function(e) {
+            e.preventDefault()
+            
+            const email = document.getElementById('email').value
+            const password = document.getElementById('password').value
+            
+            try {
+                await window.supabaseAuth.signIn(email, password)
+                alert('Connexion réussie!')
+                window.location.href = 'index.html'
+            } catch (error) {
+                alert('Erreur de connexion: ' + error.message)
+            }
+        })
+    }
+})
     </script>
 </body>
 </html>
