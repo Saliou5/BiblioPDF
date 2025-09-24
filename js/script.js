@@ -167,3 +167,63 @@ window.blobManager = new BlobManager();
 
 // === FONCTIONNALITÉS EXISTANTES === //
 // [Vos fonctions existantes restent ici...]
+// Fonctions d'intégration Supabase
+async function uploadPDF() {
+    const fileInput = document.getElementById('pdf-upload')
+    const file = fileInput.files[0]
+    
+    if (!file) {
+        alert('Veuillez sélectionner un fichier PDF')
+        return
+    }
+    
+    try {
+        const result = await window.supabasePDF.uploadPDF(file, {
+            title: document.getElementById('pdf-title')?.value,
+            description: document.getElementById('pdf-desc')?.value,
+            author: document.getElementById('pdf-author')?.value
+        })
+        
+        alert('PDF uploadé avec succès!')
+        loadUserPDFs() // Recharger la liste
+        
+    } catch (error) {
+        alert('Erreur lors de l\'upload: ' + error.message)
+    }
+}
+
+async function loadUserPDFs() {
+    try {
+        const pdfs = await window.supabasePDF.getUserPDFs()
+        displayPDFs(pdfs)
+    } catch (error) {
+        console.error('Erreur chargement PDFs:', error)
+    }
+}
+
+function displayPDFs(pdfs) {
+    const container = document.getElementById('pdf-list')
+    if (!container) return
+    
+    container.innerHTML = pdfs.map(pdf => `
+        <div class="pdf-item">
+            <h4>${pdf.title}</h4>
+            <p>Auteur: ${pdf.author || 'Non spécifié'}</p>
+            <p>Taille: ${(pdf.file_size / 1024 / 1024).toFixed(2)} MB</p>
+            <a href="${pdf.file_url}" target="_blank">Voir le PDF</a>
+        </div>
+    `).join('')
+}
+
+// Recherche de PDFs
+async function searchPDFs() {
+    const query = document.getElementById('search-input').value
+    if (!query) return
+    
+    try {
+        const results = await window.supabasePDF.searchPDFs(query)
+        displayPDFs(results)
+    } catch (error) {
+        console.error('Erreur recherche:', error)
+    }
+}
