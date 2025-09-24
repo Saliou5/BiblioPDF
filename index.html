@@ -54,6 +54,16 @@
                 </ul>
             </nav>
         </div>
+        <!-- Configuration Supabase -->
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+<script>
+    // REMPLACEZ avec vos vraies clés Supabase
+    const supabaseUrl = 'https://jospqvysxcmjmdjpdzgw.supabase.co'
+    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Impvc3BxdnlzeGNtam1kanBkemd3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTg2NjU5NjIsImV4cCI6MjA3NDI0MTk2Mn0.0L5qlVyWfhRhHeGHemfz2ORBNnV6FoEKqpjZUqJnSH0'
+    
+    // Initialiser Supabase
+    const supabase = window.supabase.createClient(supabaseUrl, supabaseKey)
+</script>
     </header>
     <!-- Dans votre index.html après le header -->
 <div class="ad-container">
